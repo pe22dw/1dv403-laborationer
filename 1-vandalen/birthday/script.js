@@ -5,12 +5,20 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
-
-
-			// Din kod här.
-
-
-
+		var birthDay= new Date(date);
+		var currentDay = new Date();
+		var daysUntil = 0;
+		
+		birthDay.setFullYear(currentDay.getFullYear());
+		
+		if(currentDay > birthDay) {
+			
+			birthDay.setFullYear(currentDay.getFullYear() + 1);
+		}
+		
+		daysUntil = Math.ceil((birthDay - currentDay) / (1000*60*60*24));
+		
+		return daysUntil;
 
 	};
 	// ------------------------------------------------------------------------------
