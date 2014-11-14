@@ -5,21 +5,29 @@ window.onload = function(){
 	
 	var birthday = function(date){
 		
-		var birthDay= new Date(date);
-		var currentDay = new Date();
+		var birthDate = new Date(date);
+		var birthMonth = birthDate.getMonth();
+		var birthDay = birthDate.getDay();
+		
+		var currentDate = new Date();
+		var currentMonth = currentDate.getMonth();
+		var currentDay = currentDate.getDay();
+		
 		var daysUntil = 0;
 		
 		
-		if(currentDay > birthDay) {
-			
-			birthDay.setFullYear(currentDay.getFullYear() + 1);
-		}
-		else {
+		birthDate.setFullYear(currentDate.getFullYear());
 		
-			birthDay.setFullYear(currentDay.getFullYear());
+		if(currentDate > birthDate) {
+			
+			birthDate.setFullYear(currentDate.getFullYear()+1);
 		}
-
-		daysUntil = Math.ceil((birthDay.getTime() - currentDay.getTime()) / (1000*60*60*24));
+		
+		daysUntil = Math.ceil((birthDate.getTime() - currentDate.getTime()) / (1000*60*60*24));
+		
+		
+		// Om skottår, lägg till en dag?
+		
 		
 		if(daysUntil === 365) {
 			
@@ -33,16 +41,15 @@ window.onload = function(){
 		return daysUntil;
 		
 		
+	 
 		
-		// Kod för att testa skottår, ej klar!
+		// Kollar om det är skottår, ej klar med det:
 		
-		/* 
-		var testLeap = 0;
+		/*
+		
 		var isLeap = false;
-		
-		testLeap = currentDay.getFullYear() +1;
-		
-		if (testLeap % 400 === 0 || testLeap % 100 !== 0 && testLeap % 4 === 0) {
+	
+		if ((currentDay.getFullYear()) % 400 === 0 || (currentDay.getFullYear()) % 100 !== 0 && (currentDay.getFullYear()) % 4 === 0) {
 			
 			isLeap = true;
 		}
@@ -50,9 +57,8 @@ window.onload = function(){
 			
 			isLeap = false;
 		} 
-		*/
 		
-
+		*/
 	};
 	// ------------------------------------------------------------------------------
 
