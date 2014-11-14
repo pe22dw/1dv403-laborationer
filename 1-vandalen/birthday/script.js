@@ -9,16 +9,49 @@ window.onload = function(){
 		var currentDay = new Date();
 		var daysUntil = 0;
 		
-		birthDay.setFullYear(currentDay.getFullYear());
 		
 		if(currentDay > birthDay) {
 			
 			birthDay.setFullYear(currentDay.getFullYear() + 1);
 		}
+		else {
 		
-		daysUntil = Math.ceil((birthDay - currentDay) / (1000*60*60*24));
+			birthDay.setFullYear(currentDay.getFullYear());
+		}
+
+		daysUntil = Math.ceil((birthDay.getTime() - currentDay.getTime()) / (1000*60*60*24));
+		
+		if(daysUntil === 365) {
+			
+			return 0;
+		}
+		else if (daysUntil === 366) {
+			
+			return 1;
+		}
 		
 		return daysUntil;
+		
+		
+		
+		// Kod för att testa skottår, ej klar!
+		
+		/* 
+		var testLeap = 0;
+		var isLeap = false;
+		
+		testLeap = currentDay.getFullYear() +1;
+		
+		if (testLeap % 400 === 0 || testLeap % 100 !== 0 && testLeap % 4 === 0) {
+			
+			isLeap = true;
+		}
+		else {
+			
+			isLeap = false;
+		} 
+		*/
+		
 
 	};
 	// ------------------------------------------------------------------------------
