@@ -8,6 +8,13 @@ window.onload = function(){
 		var birthDate = new Date(date);
 		var currentDate = new Date();
 		var daysUntil = 0;
+		
+		// Hittade efter mycket letande till slut denna lösning för formatet på datumet.
+		// Den verkar även fixa skottår? Hur?
+		if (date.length !== 10 || date.charAt(4) !== "-" || date.charAt(7) !== "-") {
+			
+			throw new Error("Skriv datumet i formen ÅÅÅÅ-MM-DD");
+		}
 
 		birthDate.setFullYear(currentDate.getFullYear());
 		
@@ -28,7 +35,6 @@ window.onload = function(){
 		}
 		
 		return daysUntil;
-		
 	};
 	// ------------------------------------------------------------------------------
 
