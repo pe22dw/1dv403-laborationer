@@ -9,13 +9,19 @@ window.onload = function(){
 		var currentDate = new Date();
 		var daysUntil = 0;
 		
+		
 		// Hittade efter mycket letande till slut denna lösning för formatet på datumet.
 		// Den verkar även fixa skottår? Hur?
+		
 		if (date.length !== 10 || date.charAt(4) !== "-" || date.charAt(7) !== "-") {
 			
 			throw new Error("Skriv datumet i formen ÅÅÅÅ-MM-DD");
 		}
 
+
+		// Sätter födelseåret till detta år.
+		// Om användaren redan har fyllt år så läggs det på ett år till.
+		
 		birthDate.setFullYear(currentDate.getFullYear());
 		
 		if(currentDate > birthDate) {
@@ -23,7 +29,13 @@ window.onload = function(){
 			birthDate.setFullYear(currentDate.getFullYear()+1);
 		}
 		
+		
+		// Räknar ut antalet dagar mellan de två datumen, avrundat uppåt.
+		
 		daysUntil = Math.ceil((birthDate.getTime() - currentDate.getTime()) / (1000*60*60*24));
+		
+		
+		// Kollar om användaren fyller år idag eller imorgon och returnerar därefter.
 		
 		if (daysUntil === 365) {
 			
@@ -33,6 +45,8 @@ window.onload = function(){
 			
 			return 1;
 		}
+		
+		// Returnerar antalet dagar tills användaren fyller år.
 		
 		return daysUntil;
 	};
