@@ -30,7 +30,7 @@ var makePerson = function(persArr){
     // Sorterar åldrar, hittar lägsta, högsta samt räknar ut medelåldern.
     // Tilldelar dessa till resultatobjektet.
  
-    arrAges.sort();
+    arrAges.sort(); // Funkar inte så bra på nummer, kan då använda som i liknande sort längre ner fast med return a - b;
     
     resultObject.minAge = arrAges[0];
     resultObject.maxAge = arrAges[arrAges.length -1];

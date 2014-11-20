@@ -11,6 +11,8 @@ window.onload = function(){
 			
 			for (i = 0; i < str.length; i+= 1) {
 
+ // Ingen optimal lösning eftersom jag inte matchar å,ä,ö och andra specialtecken. hade varit bättre med typ "if char is lowercase ändra till upper etc.."
+ 
 				if (str.charAt(i).match(/^[A-Z]/)) {
 					newString += str.charAt(i).toLowerCase().replace(/a/g, "#");
 				} 

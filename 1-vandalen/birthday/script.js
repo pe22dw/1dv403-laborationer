@@ -4,14 +4,15 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
-		
+		console.log(date);
 		var birthDate = new Date(date);
 		var currentDate = new Date();
 		var daysUntil = 0;
 		
-		
+		console.log(date);
 		// Hittade efter mycket letande till slut denna lösning för formatet på datumet.
 		// Den verkar även fixa skottår? Hur?
+		// Vi kom fram till att datumväljaren i chrome gör ett blanksteg eller liknande, därför funkar felmedd. Firefox däremot godkänner 29:e och skriver ut dagar.
 		
 		if (date.length !== 10 || date.charAt(4) !== "-" || date.charAt(7) !== "-") {
 			
@@ -36,7 +37,7 @@ window.onload = function(){
 		
 		
 		// Kollar om användaren fyller år idag eller imorgon och returnerar därefter.
-		
+	
 		if (daysUntil === 365) {
 			
 			return 0;
