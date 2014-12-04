@@ -22,13 +22,13 @@ h1{
     text-shadow: 5px 5px 5px #000;
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: 65px;
+    padding-left: 80px;
 }
 
 img{
     float: right;
     padding-right: 110px;
-    padding-top: 15px;
+    padding-top: 20px;
 }
 
 #content{
@@ -37,26 +37,43 @@ img{
 }
 
 #board{
-    width: 635px;
-    background-color: white;
+    width: 640px;
+    background-color: #79baf2;
     clear: both;
-    padding-bottom: 15px;
-    padding-left: 5px;
-    padding-top: 1px;
 }
 
-#board p{
-  padding-left: 5px;  
-  font-family: Verdana;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-right: 5px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: black;
-  background-color: #3c6ba8;
-  font-size: 14px;
-  color: silver;
+    #board div{
+      background-color: #3c6ba8;
+      width: 640px;
+    }
+    
+#text{
+    width: 60px;
+    font-family: Verdana;
+    font-size: 16px;
+    margin-left: 5px;
+    padding-top: 10px;
+    color: #d8e4f1;
+}
+
+#time{
+    font-family: Verdana;
+    font-size: 12px;
+    margin-left: 570px;
+    padding-bottom: 10px;
+    color: silver;
+}
+
+#messagecounter{
+    background-color: white;
+    font-family: Verdana;
+    font-size: 8px;
+    color: black;
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 524px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 #createmessage{
@@ -65,23 +82,25 @@ img{
 }
 
 textarea{
-    width: 625px;
+    width: 624px;
     margin-left: 5px;
-    margin-top: 5px;
+    margin-top: 1px;
     font-family: Verdana;
     font-size: 14px;
+    font-weight: bold;
+    background-color: #d8e4f1;
 }
 
 button{
     background-color: #fbee65;
     margin-top: 1px;
     margin-bottom: 5px;
-    margin-left: 5px;
+    margin-left: 512px;
     font-family: Verdana;
     font-size: 10px;
     color: black;
-    font-style: italic;
     font-weight: bold;
+    font-style: italic;
     border-style: double;
     border-width: 3px;
     border-color: black;

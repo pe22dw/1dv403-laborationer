@@ -20,13 +20,20 @@ function Message(message, date) {
 }
  
 Message.prototype.toString = function() {
+    
     return this.getText()+"  ("+this.getDate()+")";
 };
  
 Message.prototype.getHTMLText = function() {
+    
     return this.getText().replace(/[\n]/g, "<br />");
 };
 
 Message.prototype.getDateText = function() {
-   
+    
+    var timeStamp = this.getDate();
+    
+    return timeStamp.getHours() + ":" + timeStamp.getMinutes() + ":" + timeStamp.getSeconds();
+    
+
 };
