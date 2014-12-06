@@ -10,6 +10,15 @@ var MessageBoard = {
       var button = document.getElementById("button");
       button.onclick = MessageBoard.sendMessage;
       
+      var pressEnter = document.getElementById("textarea");
+      pressEnter.onkeypress = function(event) {
+        
+        if (event.keyCode === 13 && !event.shiftKey) {
+          
+          event.preventDefault();
+          MessageBoard.sendMessage();
+        }
+      };
     },
     
     sendMessage: function() {
@@ -38,6 +47,16 @@ var MessageBoard = {
       text.innerHTML = MessageBoard.messages[message].getHTMLText();
       messageHolder.appendChild(text);
       
+      var trash = document.createElement("img");
+      trash.src = "pics/trash.png";
+      trash.id = "trash";
+      messageHolder.appendChild(trash);
+      
+      var clock = document.createElement("img");
+      clock.src = "pics/clock.png";
+      clock.id = "clock";
+      messageHolder.appendChild(clock);
+      
       var time = document.createElement("p");
       time.id = "time";
       time.innerHTML = MessageBoard.messages[message].getDateText();
@@ -45,13 +64,22 @@ var MessageBoard = {
       
       board.appendChild(messageHolder);
       
+      clock.onclick = function(){
+        
+       alert(MessageBoard.messages[message].getFullDate());
+      };
+      
+      trash.onclick = function(){
+        
+        if(confirm("Vill du verkligen radera meddelandet?")) 
+        {
+          MessageBoard.messages.splice(message, 1);
+          MessageBoard.messageCounter -= 1;
+          document.getElementById("messagecounter").innerHTML = "Antal meddelanden: " + MessageBoard.messageCounter;
+          MessageBoard.renderMessages();
+        }
+      };  
     },
-    
-    
-    // Img taggen i a taggen..småbilder?
-    
-    
-    
     
     renderMessages: function() {
     
@@ -64,7 +92,5 @@ var MessageBoard = {
     }
 };
  
-
-
 window.onload = MessageBoard.init;
 

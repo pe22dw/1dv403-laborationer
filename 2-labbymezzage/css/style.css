@@ -1,3 +1,54 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
 
 body{
     background-color: #79baf2;
@@ -19,6 +70,7 @@ h1{
     font-family: Verdana;
     font-size: 36px;
     color: white;
+    font-weight: bold;
     text-shadow: 5px 5px 5px #000;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -28,7 +80,8 @@ h1{
 img{
     float: right;
     padding-right: 110px;
-    padding-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 20px;
 }
 
 #content{
@@ -45,23 +98,39 @@ img{
     #board div{
       background-color: #3c6ba8;
       width: 640px;
+      margin-top: 2px;
+      margin-bottom: 2px;
     }
     
 #text{
-    width: 60px;
     font-family: Verdana;
     font-size: 16px;
     margin-left: 5px;
-    padding-top: 10px;
+    margin-top: 10px;
     color: #d8e4f1;
+    float: left;
+}
+
+#clock{
+    width: 4%;
+    float: right;
+    padding: 5px 5px;
+}
+
+#trash{
+    width: 4%;
+    float: right;
+    padding: 5px 5px;
 }
 
 #time{
     font-family: Verdana;
     font-size: 12px;
-    margin-left: 570px;
-    padding-bottom: 10px;
-    color: silver;
+    margin-left: 574px;
+    padding-bottom: 5px;
+    padding-top: 2px;
+    color: #fbee65;
+    clear: both;
 }
 
 #messagecounter{
@@ -71,7 +140,7 @@ img{
     color: black;
     font-style: italic;
     font-weight: bold;
-    margin-left: 524px;
+    margin-left: 532px;
     padding-top: 2px;
     padding-bottom: 2px;
 }
