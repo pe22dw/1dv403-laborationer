@@ -10,6 +10,10 @@ var MessageBoard = {
       var button = document.getElementById("button");
       button.onclick = MessageBoard.sendMessage;
       
+      /* Gör så att det går att sända med enterknappen,
+      byta rad med shift+enter och hindrar att markören 
+      byter rad när meddelandet sänds med enterknappen */
+      
       var pressEnter = document.getElementById("textarea");
       pressEnter.onkeypress = function(event) {
         
@@ -22,6 +26,8 @@ var MessageBoard = {
     },
     
     sendMessage: function() {
+      
+      // Skapar nya meddelandeobjekt, rensar textfältet, lägger till objekt i arrayen och håller koll på antalet meddelanden.
       
       var textInput = document.getElementById("textarea").value;
       document.getElementById("textarea").value = "";
@@ -37,6 +43,8 @@ var MessageBoard = {
     },
     
     renderMessage: function(message) {
+      
+      // Skriver ut meddelanden med tillhörande ikoner och tidsstämpel.
       
       var board = document.getElementById("board");
       
@@ -64,10 +72,15 @@ var MessageBoard = {
       
       board.appendChild(messageHolder);
       
+      // Visar fullständigt datum för meddelande när användaren trycker på klockan.
+      
       clock.onclick = function(){
         
        alert(MessageBoard.messages[message].getFullDate());
       };
+      
+      // Raderar meddelande från arrayen när användaren trycker på krysset.
+      // Användaren får valet att bekräfta eller avbryta raderingen.
       
       trash.onclick = function(){
         
