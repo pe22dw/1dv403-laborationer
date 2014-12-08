@@ -72,15 +72,14 @@ var MessageBoard = {
       
       board.appendChild(messageHolder);
       
-      // Visar fullständigt datum för meddelande när användaren trycker på klockan.
+      // Visar fullständigt datum för meddelande när användaren trycker på klockikonen.
       
       clock.onclick = function(){
         
        alert(MessageBoard.messages[message].getFullDate());
       };
       
-      // Raderar meddelande från arrayen när användaren trycker på krysset.
-      // Användaren får valet att bekräfta eller avbryta raderingen.
+      // Ger valet att bekräfta eller avbryta radering av meddelande när användaren trycker på kryssikonen.
       
       trash.onclick = function(){
         
