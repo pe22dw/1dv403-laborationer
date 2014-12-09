@@ -17,12 +17,34 @@ var Memory = {
             var picture = "pics/" + random[i] + ".png";
             Memory.myArray.push(picture);
         }
+        
+        Memory.generateTable(Memory.rows, Memory.cols);
     },
     
-    generateTable: function() {
+    generateTable: function(rows, cols) {
         
+        var theGame = document.getElementById("thegame");
         
-    
+        var myTable = document.createElement("table");
+        myTable.border = "1";
+        
+        var myTableBody = document.createElement("tbody");
+        myTable.appendChild(myTableBody);
+        
+        theGame.appendChild(myTable);
+        
+        for (var i = 0; i < rows; i += 1) {
+            
+            var tableRow = document.createElement("tr");
+            
+            for (var j = 0; j < cols; j += 1) {
+                
+                var tableCol = document.createElement("td");
+                tableRow.appendChild(tableCol);
+            }
+            
+            myTableBody.appendChild(tableRow);
+        }
     },
 };
 
