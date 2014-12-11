@@ -101,7 +101,6 @@ var Memory = {
                 }, 400);
                 
             }
-            
             else {
                 
                 Memory.correctCounter += 1;
@@ -109,7 +108,6 @@ var Memory = {
             
             Memory.oneFlipCounter = 0;
         }
-            
         else {
             
             Memory.latest = iconId;
@@ -117,16 +115,20 @@ var Memory = {
         
         if (Memory.correctCounter === Memory.myArray.length / 2) {
             
+            var finished = document.getElementById("gamearea");
+            finished.setAttribute("id", "finished");
+            
             var gameStats = document.getElementById("gamestats");
             var text = document.createElement("p");
-            text.innerHTML = "Grattis, du klarade det på " + Memory.totalCounter + " gissningar!";
+            text.innerHTML = "Grattis, du klarade det på " + Memory.totalCounter + " gissningar!<br /><br />Klicka här för att spela igen!";
             
             gameStats.appendChild(text);
             
+            text.onclick = function() {
+                
+                window.location.reload();
+            };
         }
-        
-        
-        
     },
 };
 

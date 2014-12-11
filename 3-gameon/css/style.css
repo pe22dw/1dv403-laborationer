@@ -7,30 +7,33 @@ body{
     background-color: black;
     width: 1024px;
     margin: 50px auto;
-    
 }
 
 #gamearea{
     width: 800px;
     background-color: black;
     margin: 0 auto;
-    
 }
 
 #gamestats{
     width: 508px;
     background-image: url(../memory/pics/mind.jpg);
-    background-size: 25%;
-    margin: 35px auto;
+    background-size: 75%;
+    margin: 100px auto;
     text-align: center;
 }
 
 #gamestats p{
+    background-color: transparent;
     font-family: VERDANA;
     color: white;
     font-size: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#finished{
+    display: none;
 }
 
 table{
@@ -61,5 +64,4 @@ header h1{
     text-shadow: 5px 5px 5px #000;
     padding-top: 5px;
     padding-bottom: 8px;
-    
 }
