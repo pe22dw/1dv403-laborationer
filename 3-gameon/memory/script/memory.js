@@ -8,7 +8,7 @@ var Memory = {
     cols: 4,
     
     oneFlipCounter: 0, // Håller reda på när två ikoner har tryckts på.
-    totalCounter: 0, // Håller reda på det totala antaldet gissningar.
+    totalCounter: 0, // Håller reda på det totala antalet gissningar.
     latest: 0, // Håller reda på den senast gissade ikonen.
     correctCounter: 0, // Håller reda på antalet avklarade matchningar av ikoner.
    
