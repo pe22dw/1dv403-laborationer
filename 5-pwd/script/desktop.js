@@ -4,15 +4,29 @@ var Desktop = {
     
     init: function() {
       
-      Desktop.openWindow();  
+      Desktop.createDesktop();
     },
     
     createDesktop: function() {
+      
+      var myContainer = document.getElementById("container");  
         
-        
+      var myDesktop = document.createElement("div");
+      myDesktop.setAttribute("id", "desktop");
+      
+      var myButton = document.createElement("div");
+      myButton.setAttribute("id", "button");
+      
+      myDesktop.appendChild(myButton);
+      
+      myContainer.appendChild(myDesktop);
+     
+      myButton.addEventListener("click", function() {
+        myButton.setAttribute("id", "buttonclicked");
+        Desktop.openWindow(myDesktop)}, false);
     },
     
-    openWindow: function() {
+    openWindow: function(myDesktop) {
       
       var myWindow = document.createElement("div");
       myWindow.setAttribute("id", "window");
@@ -21,12 +35,8 @@ var Desktop = {
       myWindowTop.setAttribute("id", "windowtop");
       
       var headerText = document.createElement("p");
-      headerText.innerHTML = "Hej Nisse";
+      headerText.innerHTML = "Image Viewer";
       myWindowTop.appendChild(headerText);
-      
-      
-      
-      
       
       var myWindowBottom = document.createElement("div");
       myWindowBottom.setAttribute("id", "windowbottom");
@@ -34,11 +44,7 @@ var Desktop = {
       myWindow.appendChild(myWindowTop);
       myWindow.appendChild(myWindowBottom);
       
-      
-      var myDesktop = document.getElementById("desktop");
-      
       myDesktop.appendChild(myWindow);
-      
     },
     
 };

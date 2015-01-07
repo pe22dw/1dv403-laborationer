@@ -55,7 +55,21 @@ table {
     width: 1920px;
     height: 1080px;
     background-color: black;
-    padding-top: 50px
+    padding-top: 50px;
+}
+
+#button{
+    width: 100px;
+    height: 50px;
+    background-color: blue;
+    margin-top: 640px;
+}
+
+#buttonclicked{
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    margin-top: 640px;
 }
 
 #desktop{
@@ -70,7 +84,9 @@ table {
     width: 400px;
     height: 500px;
     background-color: white;
-    margin-left: 60px;
+    position: absolute;
+    top: 100px;
+    left: 450px;
     border-style: solid;
     border-color: black;
     border-width: 1px;
@@ -87,15 +103,20 @@ table {
 
 #windowtop p{
     font-family: Verdana;
-    font-size: 20px;
+    font-size: 14px;
     color: silver;
+    margin-left: 10px;
+    margin-top: 12px;
 }
 
 #windowbottom{
     width: 400px;
     height: 20px;
-    background-color: grey;
+    background-color: black;
     margin-top: 438px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
 }
 
 
