@@ -59,17 +59,23 @@ table {
 }
 
 #button{
-    width: 100px;
-    height: 50px;
-    background-color: blue;
-    margin-top: 640px;
+    width: 128px;
+    height: 128px;
+    background-image: url(../pics/folderclosed.png);
+    background-size: 50%;
+    margin-top: 625px;
+    margin-left: 10px;
+    background-repeat: no-repeat;
 }
 
 #buttonclicked{
-    width: 100px;
-    height: 50px;
-    background-color: red;
-    margin-top: 640px;
+    width: 128px;
+    height: 128px;
+    background-image: url(../pics/folderopen.png);
+    background-size: 50%;
+    margin-top: 625px;
+    margin-left: 10px;
+    background-repeat: no-repeat;
 }
 
 #desktop{
@@ -104,9 +110,10 @@ table {
 #windowtop p{
     font-family: Verdana;
     font-size: 14px;
-    color: silver;
+    color: white;
     margin-left: 10px;
     margin-top: 12px;
+    float: left;
 }
 
 #windowbottom{
@@ -119,6 +126,19 @@ table {
     border-width: 1px;
 }
 
+#headerlogo{
+    width: 8%;
+    float: left;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+
+#exitlogo{
+    width: 5%;
+    float: left;
+    margin-left: 231px;
+    margin-top: 9px;
+}
 
 
 
