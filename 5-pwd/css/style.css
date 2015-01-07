@@ -140,5 +140,9 @@ table {
     margin-top: 9px;
 }
 
+#closewindow{
+    display: none;
+}
+
 
 
