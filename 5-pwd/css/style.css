@@ -63,7 +63,7 @@ table {
     height: 128px;
     background-image: url(../pics/folderclosed.png);
     background-size: 50%;
-    margin-top: 625px;
+    margin-top: 623px;
     margin-left: 10px;
     background-repeat: no-repeat;
 }
@@ -73,7 +73,7 @@ table {
     height: 128px;
     background-image: url(../pics/folderopen.png);
     background-size: 50%;
-    margin-top: 625px;
+    margin-top: 623px;
     margin-left: 10px;
     background-repeat: no-repeat;
 }
@@ -88,14 +88,17 @@ table {
 
 #window{
     width: 400px;
-    height: 500px;
+    height: 440px;
     background-color: white;
     position: absolute;
-    top: 100px;
+    top: 140px;
     left: 450px;
     border-style: solid;
     border-color: black;
     border-width: 1px;
+    box-shadow: 15px 15px 20px #431a08;
+    /* Skugga från: http://www.w3schools.com/cssref/css3_pr_box-shadow.asp */
+    overflow: scroll;
 }
 
 #windowtop{

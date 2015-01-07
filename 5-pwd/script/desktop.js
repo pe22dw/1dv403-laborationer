@@ -24,6 +24,7 @@ var Desktop = {
       myContainer.appendChild(myDesktop);
      
       myButton.addEventListener("click", function() {
+        
         myButton.setAttribute("id", "buttonclicked");
         Desktop.openWindow(myDesktop)}, false);
     },
@@ -59,16 +60,16 @@ var Desktop = {
         myWindowTop.appendChild(headerText);
         myWindowTop.appendChild(exitLogo);
         
-        myWindow.appendChild(myWindowTop);
-        myWindow.appendChild(myWindowBottom);
+        myDesktop.appendChild(myWindowTop);
+        myDesktop.appendChild(myWindowBottom);
         
         myDesktop.appendChild(myWindow);
         
+        Desktop.getImages();
+        
         exitLogo.addEventListener("click", function() {
         
-          Desktop.closeWindow();
-        
-        }, false);
+          Desktop.closeWindow()}, false);
       }
       else
       {
@@ -82,31 +83,46 @@ var Desktop = {
       document.getElementById("window").setAttribute("id", "closewindow");
       Desktop.clickCounter = 0;
     },
-
+    
+    
+    getImages: function() {
+      
+      var xhr = new XMLHttpRequest();
+        
+        xhr.onreadystatechange = function() {
+    
+            if (xhr.readyState === 4)
+            {
+                if (xhr.status === 200)
+                {
+                    var responseText = JSON.parse(xhr.responseText);
+                    
+                    for (var i = 0; i < responseText.length; i += 1)
+                    {
+                    
+                      var img = document.createElement("img");
+                      img.setAttribute("src", responseText[i].thumbURL);
+                      
+                      document.getElementById("window").appendChild(img);
+                    }
+                  
+                }
+                else
+                {
+                    alert("Läsfel, status:"+xhr.status);
+                }
+            }
+        };
+    
+        xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
+        xhr.send(null);
+  
+  
+      
+    },
+    
+    
+  
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 window.onload = Desktop.init;
