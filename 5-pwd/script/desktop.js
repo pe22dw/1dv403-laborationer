@@ -81,6 +81,9 @@ var Desktop = {
       
       document.getElementById("buttonclicked").setAttribute("id", "button");
       document.getElementById("window").setAttribute("id", "closewindow");
+      document.getElementById("windowtop").setAttribute("id", "closewindow");
+      document.getElementById("windowbottom").setAttribute("id", "closewindow");
+      
       Desktop.clickCounter = 0;
     },
     
@@ -97,15 +100,20 @@ var Desktop = {
                 {
                     var responseText = JSON.parse(xhr.responseText);
                     
-                    for (var i = 0; i < responseText.length; i += 1)
+                    for (var i = 0; i <= responseText.length; i += 1)
                     {
                     
+                      var div = document.createElement("div");
+                      div.setAttribute("id", "imagediv");
+                      
                       var img = document.createElement("img");
+                      img.setAttribute("id", "image");
                       img.setAttribute("src", responseText[i].thumbURL);
                       
-                      document.getElementById("window").appendChild(img);
+                      div.appendChild(img);
+                      document.getElementById("window").appendChild(div);
                     }
-                  
+                    
                 }
                 else
                 {
