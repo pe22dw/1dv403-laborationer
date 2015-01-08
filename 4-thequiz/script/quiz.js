@@ -6,8 +6,8 @@ var Quiz = {
     url: "http://vhost3.lnu.se:20080/question/1",
     
     // Håller reda på antal gissningar på varje fråga.
-    guessCounter: [0],
-    questionCounter: 0,
+    guessCounter: [],
+    questionCounter: -1,
     
     init: function() {
         
@@ -31,6 +31,12 @@ var Quiz = {
                     var p = document.createElement("p");
                     p.innerHTML = responseText.question;
                     questionArea.appendChild(p);
+                    
+                    // Arrayen för gissningar utökas för en fråga.
+                    Quiz.guessCounter.push(0);
+                    
+                    // Öka frågeräknaren med 1.
+                    Quiz.questionCounter += 1;
                     
                     // Ändra aktuell url till där nästa fråga ligger.
                     Quiz.url = responseText.nextURL;
@@ -67,22 +73,27 @@ var Quiz = {
                 if (xhr.status === 200)
                 {
                     // Om hämtning går bra så är svaret rätt.
-                    // ökar gissningsräknaren på aktuell fråga med 1.
-                    // Arrayen för gissningar utökas efter behov.
-                    Quiz.guessCounter.push(0);
+                    
+                    // Ökar gissningsräknaren på aktuell fråga med 1.
                     Quiz.guessCounter[Quiz.questionCounter] += 1;
-                
+                    
                     // Ändra aktuell url till där nästa fråga ligger.
                     var responseText2 = JSON.parse(xhr.responseText);
                     Quiz.url = responseText2.nextURL;
                     
-                    // Öka frågeräknaren med 1.
-                    Quiz.questionCounter += 1;
-                    
-                    // Om frågeräknaren är mer än 4 så är spelet slut, annars hämtas ny fråga.
+                    // Om det inte finns fler nextURL så är spelet slut, annars hämtas ny fråga.
                     if(!responseText2.nextURL)
                     {
-                        alert("Spelet är slut!\nAntal gissningar:\nFråga 1 - " + Quiz.guessCounter[0] + "\nFråga 2 - " + Quiz.guessCounter[1] + "\nFråga 3 - " + Quiz.guessCounter[2] + "\nFråga 4 - " + Quiz.guessCounter[3] + "\nFråga 5 - " + Quiz.guessCounter[4]);
+                        var end = document.createElement("p");
+                        end.innerHTML = "Antal gissningar:\n";
+                        document.getElementById("questionarea").appendChild(end);
+                        
+                        for (var i = 0; i < Quiz.guessCounter.length; i += 1 )
+                        {
+                            var guesses = document.createElement("p");
+                            guesses.innerHTML = "Fråga " + [i+1] + ": " + Quiz.guessCounter[i] + "\n";
+                            document.getElementById("questionarea").appendChild(guesses);
+                        }
                     }
                     else
                     {
