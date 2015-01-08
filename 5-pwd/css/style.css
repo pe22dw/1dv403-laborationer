@@ -151,19 +151,16 @@ table {
 }
 
 #imagediv{
-    width: 80px;
     background-color: silver;
     margin-left: 10px;
     margin-top: 20px;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
     float: left;
-    padding: 10px 10px;
+    padding: 5px 5px;
 }
 
 #image{
-    width: 80%;
+    width: 100%;
+    float: left;
     
 }
 
