@@ -69,6 +69,7 @@ var Desktop = {
         
         Desktop.getImages();
         
+        
         exitLogo.addEventListener("click", function() {
         
           Desktop.closeWindow()}, false);
@@ -89,10 +90,15 @@ var Desktop = {
       Desktop.clickCounter = 0;
     },
     
-    
     getImages: function() {
       
       var xhr = new XMLHttpRequest();
+        
+        var loading = document.createElement("img");
+        loading.setAttribute("src", "pics/Loader.gif");
+        loading.setAttribute("id", "active");
+        
+        document.getElementById("windowbottom").appendChild(loading);
         
         xhr.onreadystatechange = function() {
     
@@ -100,15 +106,15 @@ var Desktop = {
             {
                 if (xhr.status === 200)
                 {
+                    loading.setAttribute("id", "inactive");
+                    
                     var responseText = JSON.parse(xhr.responseText);
                     
                     for (var j = 0; j < responseText.length; j += 1)
                       {
                         var width = responseText[j].thumbWidth;
                         var height= responseText[j].thumbHeight;
-                        console.log(width);
-                        console.log(height);
-                      
+                        
                         if (Desktop.imageDivWidth < width)
                         {
                           Desktop.imageDivWidth = width;
@@ -119,13 +125,12 @@ var Desktop = {
                         }
                       }
                       
-                    
                     for (var i = 0; i < responseText.length; i += 1)
                     {
                       var imageDiv = document.createElement("div");
                       imageDiv.setAttribute("id", "imagediv");
-                      imageDiv.style.width = "75px";
-                      imageDiv.style.height = "50px";
+                      imageDiv.style.width = Desktop.imageDivWidth + "px";
+                      imageDiv.style.height = Desktop.imageDivHeight + "px";
                       
                       var img = document.createElement("img");
                       img.setAttribute("src", responseText[i].thumbURL);
@@ -133,22 +138,18 @@ var Desktop = {
                       imageDiv.appendChild(img);
                       document.getElementById("window").appendChild(imageDiv);
                     }
-                    
                 }
                 else
                 {
+                    loading.setAttribute("id", "inactive");
                     alert("Läsfel, status:"+xhr.status);
                 }
             }
-            
         };
     
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
-    
-    
     },
-  
 };
 
 window.onload = Desktop.init;
