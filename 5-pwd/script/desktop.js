@@ -5,6 +5,8 @@ var Desktop = {
     clickCounter: 0,
     imageDivWidth: 0,
     imageDivHeight: 0,
+    imageId: 0,
+    background: [],
     
     init: function() {
       
@@ -87,6 +89,7 @@ var Desktop = {
       document.getElementById("windowbottom").setAttribute("id", "closewindow");
       
       Desktop.clickCounter = 0;
+      Desktop.imageId = 0;
     },
     
     getImages: function() {
@@ -126,7 +129,6 @@ var Desktop = {
                       
                     for (var i = 0; i < responseText.length; i += 1)
                     {
-                      
                       var imageDiv = document.createElement("div");
                       imageDiv.setAttribute("id", "imagediv");
                       imageDiv.style.width = Desktop.imageDivWidth + "px";
@@ -135,22 +137,22 @@ var Desktop = {
                       var a = document.createElement("a");
                       a.setAttribute("href", "#");
                       
+                      Desktop.imageId += 1;
+                      
                       var img = document.createElement("img");
                       img.setAttribute("src", responseText[i].thumbURL);
+                      img.setAttribute("id", Desktop.imageId);
+                      console.log(Desktop.imageId);
                       
                       a.appendChild(img);
                       imageDiv.appendChild(a);
                       document.getElementById("window").appendChild(imageDiv);
+                      
+                      Desktop.background.push(responseText[i].URL);
+                      
+                      
                     }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    Desktop.changeBackground();
                     
                 }
                 else
@@ -163,6 +165,19 @@ var Desktop = {
     
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
+    },
+    
+    changeBackground: function() {
+      
+      document.getElementById(Desktop.imageId).addEventListener("click", function() {
+        
+        var desktop2 = document.getElementById("desktop");
+        
+        desktop2.style.background-image = Desktop.background[Desktop.imageId]}, false);
+      
+      
+      
+      
     },
 };
 
