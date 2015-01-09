@@ -3,6 +3,8 @@
 var Desktop = {
   
     clickCounter: 0,
+    imageDivWidth: 0,
+    imageDivHeight: 0,
     
     init: function() {
       
@@ -100,18 +102,36 @@ var Desktop = {
                 {
                     var responseText = JSON.parse(xhr.responseText);
                     
-                    for (var i = 0; i <= responseText.length; i += 1)
-                    {
+                    for (var j = 0; j < responseText.length; j += 1)
+                      {
+                        var width = responseText[j].thumbWidth;
+                        var height= responseText[j].thumbHeight;
+                        console.log(width);
+                        console.log(height);
+                      
+                        if (Desktop.imageDivWidth < width)
+                        {
+                          Desktop.imageDivWidth = width;
+                        }
+                        if (Desktop.imageDivHeight < height)
+                        {
+                          Desktop.imageDivHeight = height;
+                        }
+                      }
+                      
                     
-                      var div = document.createElement("div");
-                      div.setAttribute("id", "imagediv");
+                    for (var i = 0; i < responseText.length; i += 1)
+                    {
+                      var imageDiv = document.createElement("div");
+                      imageDiv.setAttribute("id", "imagediv");
+                      imageDiv.style.width = "75px";
+                      imageDiv.style.height = "50px";
                       
                       var img = document.createElement("img");
-                      img.setAttribute("id", "image");
                       img.setAttribute("src", responseText[i].thumbURL);
                       
-                      div.appendChild(img);
-                      document.getElementById("window").appendChild(div);
+                      imageDiv.appendChild(img);
+                      document.getElementById("window").appendChild(imageDiv);
                     }
                     
                 }
@@ -120,16 +140,14 @@ var Desktop = {
                     alert("Läsfel, status:"+xhr.status);
                 }
             }
+            
         };
     
         xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
         xhr.send(null);
-  
-  
-      
+    
+    
     },
-    
-    
   
 };
 
