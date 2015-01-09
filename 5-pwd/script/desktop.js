@@ -69,7 +69,6 @@ var Desktop = {
         
         Desktop.getImages();
         
-        
         exitLogo.addEventListener("click", function() {
         
           Desktop.closeWindow()}, false);
@@ -95,7 +94,7 @@ var Desktop = {
       var xhr = new XMLHttpRequest();
         
         var loading = document.createElement("img");
-        loading.setAttribute("src", "pics/Loader.gif");
+        loading.setAttribute("src", "pics/loader.gif");
         loading.setAttribute("id", "active");
         
         document.getElementById("windowbottom").appendChild(loading);
@@ -127,17 +126,32 @@ var Desktop = {
                       
                     for (var i = 0; i < responseText.length; i += 1)
                     {
+                      
                       var imageDiv = document.createElement("div");
                       imageDiv.setAttribute("id", "imagediv");
                       imageDiv.style.width = Desktop.imageDivWidth + "px";
                       imageDiv.style.height = Desktop.imageDivHeight + "px";
                       
+                      var a = document.createElement("a");
+                      a.setAttribute("href", "#");
+                      
                       var img = document.createElement("img");
                       img.setAttribute("src", responseText[i].thumbURL);
                       
-                      imageDiv.appendChild(img);
+                      a.appendChild(img);
+                      imageDiv.appendChild(a);
                       document.getElementById("window").appendChild(imageDiv);
                     }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
                 else
                 {
