@@ -19,6 +19,7 @@ var Desktop = {
         
       var myDesktop = document.createElement("div");
       myDesktop.setAttribute("id", "desktop");
+      myDesktop.style.background = "url('pics/desktopwood.jpg')";
       
       var myButton = document.createElement("div");
       myButton.setAttribute("id", "button");
@@ -39,7 +40,6 @@ var Desktop = {
       
       if(Desktop.clickCounter === 1)
       {
-      
         var myWindow = document.createElement("div");
         myWindow.setAttribute("id", "window");
         
@@ -112,48 +112,11 @@ var Desktop = {
                     
                     var responseText = JSON.parse(xhr.responseText);
                     
-                    for (var j = 0; j < responseText.length; j += 1)
-                      {
-                        var width = responseText[j].thumbWidth;
-                        var height= responseText[j].thumbHeight;
-                        
-                        if (Desktop.imageDivWidth < width)
-                        {
-                          Desktop.imageDivWidth = width;
-                        }
-                        if (Desktop.imageDivHeight < height)
-                        {
-                          Desktop.imageDivHeight = height;
-                        }
-                      }
+                    Desktop.findLargestImage(responseText);
                       
-                    for (var i = 0; i < responseText.length; i += 1)
-                    {
-                      var imageDiv = document.createElement("div");
-                      imageDiv.setAttribute("id", "imagediv");
-                      imageDiv.style.width = Desktop.imageDivWidth + "px";
-                      imageDiv.style.height = Desktop.imageDivHeight + "px";
-                      
-                      var a = document.createElement("a");
-                      a.setAttribute("href", "#");
-                      
-                      Desktop.imageId += 1;
-                      
-                      var img = document.createElement("img");
-                      img.setAttribute("src", responseText[i].thumbURL);
-                      img.setAttribute("id", Desktop.imageId);
-                      console.log(Desktop.imageId);
-                      
-                      a.appendChild(img);
-                      imageDiv.appendChild(a);
-                      document.getElementById("window").appendChild(imageDiv);
-                      
-                      Desktop.background.push(responseText[i].URL);
-                      
-                      
-                    }
-                    Desktop.changeBackground();
+                    Desktop.createImageCollection(responseText);
                     
+                    Desktop.changeBackground();
                 }
                 else
                 {
@@ -169,15 +132,55 @@ var Desktop = {
     
     changeBackground: function() {
       
-      document.getElementById(Desktop.imageId).addEventListener("click", function() {
+      
+      
+      
+      var newDesktop = document.getElementById("desktop");
+      newDesktop.style.backgroundImage = "url("+Desktop.background[0]+")";
+    },
+    
+    findLargestImage: function(responseText) {
+      
+      for (var j = 0; j < responseText.length; j += 1)
+      {
+        var width = responseText[j].thumbWidth;
+        var height= responseText[j].thumbHeight;
+                        
+        if (Desktop.imageDivWidth < width)
+        {
+          Desktop.imageDivWidth = width;
+        }
+        if (Desktop.imageDivHeight < height)
+        {
+          Desktop.imageDivHeight = height;
+        }
+      }
+    },
+    
+    createImageCollection: function(responseText) {
+      
+      for (var i = 0; i < responseText.length; i += 1)
+      {
+        var imageDiv = document.createElement("div");
+        imageDiv.setAttribute("id", "imagediv");
+        imageDiv.style.width = Desktop.imageDivWidth + "px";
+        imageDiv.style.height = Desktop.imageDivHeight + "px";
+                      
+        var a = document.createElement("a");
+        a.setAttribute("href", "#");
+                      
+        Desktop.imageId += 1;
+                      
+        var img = document.createElement("img");
+        img.setAttribute("src", responseText[i].thumbURL);
+        img.setAttribute("id", Desktop.imageId);
+                     
+        a.appendChild(img);
+        imageDiv.appendChild(a);
+        document.getElementById("window").appendChild(imageDiv);
         
-        var desktop2 = document.getElementById("desktop");
-        
-        desktop2.style.background-image = Desktop.background[Desktop.imageId]}, false);
-      
-      
-      
-      
+        Desktop.background.push(responseText[i].URL);
+      }
     },
 };
 
