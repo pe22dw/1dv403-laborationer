@@ -80,17 +80,6 @@ var Desktop = {
         Desktop.closeWindow();
       }
     },
-
-    closeWindow: function() {
-      
-      document.getElementById("buttonclicked").setAttribute("id", "button");
-      document.getElementById("window").setAttribute("id", "closewindow");
-      document.getElementById("windowtop").setAttribute("id", "closewindow");
-      document.getElementById("windowbottom").setAttribute("id", "closewindow");
-      
-      Desktop.clickCounter = 0;
-      Desktop.imageId = 0;
-    },
     
     getImages: function() {
       
@@ -112,11 +101,17 @@ var Desktop = {
                     
                     var responseText = JSON.parse(xhr.responseText);
                     
-                    Desktop.findLargestImage(responseText);
+                    for (var t = 0; t < responseText.length; t += 1)
+                    {
+                      var width = responseText[t].thumbWidth;
+                      var height= responseText[t].thumbHeight;
                       
-                    Desktop.createImageCollection(responseText);
-                    
-                    Desktop.changeBackground();
+                      Desktop.findLargestImage(width, height);
+                      
+                      var thumbUrl = responseText[t].thumbURL;
+                      
+                      Desktop.createImageCollection(thumbUrl);
+                    }
                 }
                 else
                 {
@@ -130,22 +125,8 @@ var Desktop = {
         xhr.send(null);
     },
     
-    changeBackground: function() {
+    findLargestImage: function(width, height) {
       
-      
-      
-      
-      var newDesktop = document.getElementById("desktop");
-      newDesktop.style.backgroundImage = "url("+Desktop.background[0]+")";
-    },
-    
-    findLargestImage: function(responseText) {
-      
-      for (var j = 0; j < responseText.length; j += 1)
-      {
-        var width = responseText[j].thumbWidth;
-        var height= responseText[j].thumbHeight;
-                        
         if (Desktop.imageDivWidth < width)
         {
           Desktop.imageDivWidth = width;
@@ -154,13 +135,10 @@ var Desktop = {
         {
           Desktop.imageDivHeight = height;
         }
-      }
     },
     
-    createImageCollection: function(responseText) {
+    createImageCollection: function(thumbUrl) {
       
-      for (var i = 0; i < responseText.length; i += 1)
-      {
         var imageDiv = document.createElement("div");
         imageDiv.setAttribute("id", "imagediv");
         imageDiv.style.width = Desktop.imageDivWidth + "px";
@@ -172,15 +150,40 @@ var Desktop = {
         Desktop.imageId += 1;
                       
         var img = document.createElement("img");
-        img.setAttribute("src", responseText[i].thumbURL);
-        img.setAttribute("id", Desktop.imageId);
+        img.setAttribute("src", thumbUrl);
+        a.setAttribute("id", Desktop.imageId);
                      
         a.appendChild(img);
         imageDiv.appendChild(a);
         document.getElementById("window").appendChild(imageDiv);
         
-        Desktop.background.push(responseText[i].URL);
-      }
+       // Desktop.background.push(responseText[i].URL);
+    },
+    
+    changeBackground: function() {
+      
+      /*
+      
+      var newDesktop = document.getElementById("desktop");
+      var a = document.getElementById("a");
+      
+      a.addEventListener("click", function() {
+        
+      Desktop.imageId = a.getAttribute("id");
+      newDesktop.style.backgroundImage = "url("+Desktop.background[Desktop.imageId]+")";}, false);
+      
+      */
+    },
+    
+    closeWindow: function() {
+      
+      document.getElementById("buttonclicked").setAttribute("id", "button");
+      document.getElementById("window").setAttribute("id", "closewindow");
+      document.getElementById("windowtop").setAttribute("id", "closewindow");
+      document.getElementById("windowbottom").setAttribute("id", "closewindow");
+      
+      Desktop.clickCounter = 0;
+      Desktop.imageId = 0;
     },
 };
 
