@@ -105,12 +105,12 @@ var Desktop = {
                     {
                       var width = responseText[t].thumbWidth;
                       var height= responseText[t].thumbHeight;
-                      
                       Desktop.findLargestImage(width, height);
                       
                       var thumbUrl = responseText[t].thumbURL;
-                      
                       Desktop.createImageCollection(thumbUrl);
+                      
+                      Desktop.background.push(responseText[t].URL);
                     }
                 }
                 else
@@ -146,33 +146,30 @@ var Desktop = {
                       
         var a = document.createElement("a");
         a.setAttribute("href", "#");
-                      
-        Desktop.imageId += 1;
-                      
+                   
+        Desktop.imageId += 1;   
+        
         var img = document.createElement("img");
         img.setAttribute("src", thumbUrl);
-        a.setAttribute("id", Desktop.imageId);
+        img.setAttribute("id", Desktop.imageId);
                      
         a.appendChild(img);
         imageDiv.appendChild(a);
         document.getElementById("window").appendChild(imageDiv);
         
-       // Desktop.background.push(responseText[i].URL);
+        a.onclick = function () {
+            
+            Desktop.changeBackground(Desktop.imageId);
+        }; 
     },
     
-    changeBackground: function() {
-      
-      /*
+    changeBackground: function(imageId) {
       
       var newDesktop = document.getElementById("desktop");
-      var a = document.getElementById("a");
       
-      a.addEventListener("click", function() {
-        
-      Desktop.imageId = a.getAttribute("id");
-      newDesktop.style.backgroundImage = "url("+Desktop.background[Desktop.imageId]+")";}, false);
+      // var osten = document.getElementById(imageId);
       
-      */
+      newDesktop.style.background = "url("+Desktop.background[1]+")";
     },
     
     closeWindow: function() {
