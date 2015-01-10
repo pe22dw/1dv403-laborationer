@@ -159,17 +159,14 @@ var Desktop = {
         
         a.onclick = function () {
             
-            Desktop.changeBackground(Desktop.imageId);
+            Desktop.changeBackground(img.id);
         }; 
     },
     
     changeBackground: function(imageId) {
       
       var newDesktop = document.getElementById("desktop");
-      
-      // var osten = document.getElementById(imageId);
-      
-      newDesktop.style.background = "url("+Desktop.background[1]+")";
+      newDesktop.style.background = "url("+Desktop.background[imageId-1]+")";
     },
     
     closeWindow: function() {
