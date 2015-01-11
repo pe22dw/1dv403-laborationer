@@ -87,14 +87,14 @@ table {
 
 #window{
     width: 400px;
-    height: 440px;
+    height: 420px;
     background-color: white;
     position: absolute;
-    top: 140px;
+    top: 165px;
     left: 450px;
     border-style: solid;
     border-color: black;
-    border-width: 2px;
+    border-width: 0px 2px 2px 2px;
     overflow: auto;
 }
 
@@ -124,11 +124,23 @@ table {
     height: 20px;
     background-color: black;
     position: absolute;
-    top: 582px;
+    top: 587px;
     left: 450px;
     border-style: solid;
     border-color: black;
     border-width: 2px;
+}
+
+#windowemptyspace{
+    width: 402px;
+    height: 20px;
+    background-color: #2c2828;
+    position: absolute;
+    top: 143px;
+    left: 450px;
+    border-style: solid;
+    border-color: grey black black black;
+    border-width: 1px;
 }
 
 #headerlogo{
@@ -183,3 +195,4 @@ a:hover{
 a:active{
     box-shadow: 0px 0px 0px black;
 }
+

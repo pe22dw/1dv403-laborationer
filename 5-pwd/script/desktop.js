@@ -57,6 +57,9 @@ var Desktop = {
         exitLogo.setAttribute("src", "pics/closewindow.png");
         exitLogo.setAttribute("id", "exitlogo");
         
+        var emptySpace = document.createElement("div");
+        emptySpace.setAttribute("id", "windowemptyspace");
+        
         var myWindowBottom = document.createElement("div");
         myWindowBottom.setAttribute("id", "windowbottom");
         
@@ -65,6 +68,7 @@ var Desktop = {
         myWindowTop.appendChild(exitLogo);
         
         myDesktop.appendChild(myWindowTop);
+        myDesktop.appendChild(emptySpace);
         myDesktop.appendChild(myWindowBottom);
         
         myDesktop.appendChild(myWindow);
@@ -174,6 +178,7 @@ var Desktop = {
       document.getElementById("buttonclicked").setAttribute("id", "button");
       document.getElementById("window").setAttribute("id", "closewindow");
       document.getElementById("windowtop").setAttribute("id", "closewindow");
+      document.getElementById("windowemptyspace").setAttribute("id", "closewindow");
       document.getElementById("windowbottom").setAttribute("id", "closewindow");
       
       Desktop.clickCounter = 0;
