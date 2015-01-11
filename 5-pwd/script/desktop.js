@@ -3,12 +3,10 @@
 var Desktop = {
   
     clickCounter: 0,
-    requestCounter: 0,
     imageDivWidth: 0,
     imageDivHeight: 0,
     imageId: 0,
     background: [],
-    xhr: null,
     
     init: function() {
       
@@ -84,61 +82,48 @@ var Desktop = {
     },
     
     getImages: function() {
-      
-        Desktop.requestCounter += 1;
         
-        if(Desktop.requestCounter === 1)
-        {
-          Desktop.xhr = new XMLHttpRequest();
-          var xhr = Desktop.xhr;
+        var xhr = new XMLHttpRequest();
           
-          var loading = document.createElement("img");
-          loading.setAttribute("src", "pics/loader.gif");
-          loading.setAttribute("id", "active");
+        var loading = document.createElement("img");
+        loading.setAttribute("src", "pics/loader.gif");
+        loading.setAttribute("id", "active");
           
-          document.getElementById("windowbottom").appendChild(loading);
+        document.getElementById("windowbottom").appendChild(loading);
           
-          xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function() {
       
-              if (xhr.readyState === 4)
-              {
-                  if (xhr.status === 200)
-                  {
-                      loading.setAttribute("id", "inactive");
+            if (xhr.readyState === 4)
+            {
+                if (xhr.status === 200)
+                {
+                    loading.setAttribute("id", "inactive");
                       
-                      var responseText = JSON.parse(xhr.responseText);
+                    var responseText = JSON.parse(xhr.responseText);
                       
-                      for (var t = 0; t < responseText.length; t += 1)
-                      {
-                        var width = responseText[t].thumbWidth;
-                        var height= responseText[t].thumbHeight;
-                        Desktop.findLargestImage(width, height);
+                    for (var t = 0; t < responseText.length; t += 1)
+                    {
+                      var width = responseText[t].thumbWidth;
+                      var height= responseText[t].thumbHeight;
+                      Desktop.findLargestImage(width, height);
                         
-                        var thumbUrl = responseText[t].thumbURL;
-                        Desktop.createImageCollection(thumbUrl);
+                      var thumbUrl = responseText[t].thumbURL;
+                      Desktop.createImageCollection(thumbUrl);
                         
-                        Desktop.background.push(responseText[t].URL);
-                      }
-                  }
-                  else
-                  {
-                      loading.setAttribute("id", "inactive");
-                      alert("Läsfel, status:"+xhr.status);
-                  }
-              }
-          };
-        }
-        else
-        {
-          Desktop.xhr.abort();
-          Desktop.requestCounter = 0;
-          Desktop.getImages();
-        }
-            
-        Desktop.xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
-        Desktop.xhr.send(null);
+                      Desktop.background.push(responseText[t].URL);
+                    }
+                }
+                else
+                {
+                    loading.setAttribute("id", "inactive");
+                    alert("Läsfel, status:"+xhr.status);
+                }
+            }
+        };
+        
+        xhr.open("GET", "http://homepage.lnu.se/staff/tstjo/labbyServer/imgviewer/", true);
+        xhr.send(null);
     },
-    
     
     findLargestImage: function(width, height) {
       
@@ -182,11 +167,6 @@ var Desktop = {
       
       var newDesktop = document.getElementById("desktop");
       newDesktop.style.background = "url("+Desktop.background[imageId-1]+")";
-      
-      
-      
-      
-      
     },
     
     closeWindow: function() {
