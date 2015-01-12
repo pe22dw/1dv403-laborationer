@@ -120,6 +120,7 @@ var Desktop = {
                       
                     var responseText = JSON.parse(xhr.responseText);
                       
+                    // Efter redovisning: Skulle behållit 2 separata loopar, eftersom denna lösning inte hittar största bilden..   
                     for (var t = 0; t < responseText.length; t += 1)
                     {
                       var width = responseText[t].thumbWidth;
