@@ -2,10 +2,19 @@
 
 var Desktop = {
   
+    // Håller koll på om fönstret är öppet eller stängt.
     clickCounter: 0,
+    
+    // Lagrar den största bildbredden.
     imageDivWidth: 0,
+    
+    // Lagrar den största bildhöjden.
     imageDivHeight: 0,
+    
+    // Räknare för bildernas id.
     imageId: 0,
+    
+    // Array som lagrar samtliga bilders URL.
     background: [],
     
     init: function() {
@@ -14,6 +23,8 @@ var Desktop = {
     },
     
     createDesktop: function() {
+      
+      // Skapar själva skrivbordet med tillhörande klickbar mapp.
       
       var myContainer = document.getElementById("container");  
         
@@ -35,6 +46,8 @@ var Desktop = {
     },
     
     openWindow: function(myDesktop) {
+      
+      // Skapar ett öppet fönster som går att stänga på två olika sätt.
       
       Desktop.clickCounter += 1;
       
@@ -87,6 +100,8 @@ var Desktop = {
     
     getImages: function() {
         
+        // Hämtar innehåll från källan.
+        
         var xhr = new XMLHttpRequest();
           
         var loading = document.createElement("img");
@@ -131,6 +146,8 @@ var Desktop = {
     
     findLargestImage: function(width, height) {
       
+        // Jämför bredd och höjd på de olika bilderna och sparar den högsta.
+      
         if (Desktop.imageDivWidth < width)
         {
           Desktop.imageDivWidth = width;
@@ -142,6 +159,9 @@ var Desktop = {
     },
     
     createImageCollection: function(thumbUrl) {
+      
+        // Skapar bildplatser utefter de största måtten.
+        // Skapar klickbara bilder och tilldelar dem ett id.
       
         var imageDiv = document.createElement("div");
         imageDiv.setAttribute("id", "imagediv");
@@ -169,11 +189,15 @@ var Desktop = {
     
     changeBackground: function(imageId) {
       
+      // Byter bakgrundsbild beroende på vilken bild som har klickats på.
+      
       var newDesktop = document.getElementById("desktop");
       newDesktop.style.background = "url("+Desktop.background[imageId-1]+")";
     },
     
     closeWindow: function() {
+      
+      // Stänger fönstret och nollställer bildernas id.
       
       document.getElementById("buttonclicked").setAttribute("id", "button");
       document.getElementById("window").setAttribute("id", "closewindow");

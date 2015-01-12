@@ -139,7 +139,7 @@ table {
     top: 143px;
     left: 450px;
     border-style: solid;
-    border-color: grey black black black;
+    border-color: black;
     border-width: 1px;
 }
 
@@ -172,7 +172,7 @@ table {
 
 #active{
     width: 14px;
-    margin-top: 3px;
+    margin-top: 2px;
     margin-left: 10px;
 }
 
