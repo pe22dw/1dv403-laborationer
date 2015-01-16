@@ -121,15 +121,21 @@ var Desktop = {
                     var responseText = JSON.parse(xhr.responseText);
                       
                     // Efter redovisning: Skulle behållit 2 separata loopar, eftersom denna lösning inte hittar största bilden..   
+                    // Fixade tillbaka den!
+                    
+                    for (var j = 0; j < responseText.length; j += 1)
+                    {
+                      var width = responseText[j].thumbWidth;
+                      var height= responseText[j].thumbHeight;
+                      Desktop.findLargestImage(width, height);
+                    }
+                    
                     for (var t = 0; t < responseText.length; t += 1)
                     {
-                      var width = responseText[t].thumbWidth;
-                      var height= responseText[t].thumbHeight;
-                      Desktop.findLargestImage(width, height);
-                        
                       var thumbUrl = responseText[t].thumbURL;
                       Desktop.createImageCollection(thumbUrl);
-                        
+                     
+                     // Sparar samtliga bilders URL i en array.   
                       Desktop.background.push(responseText[t].URL);
                     }
                 }
